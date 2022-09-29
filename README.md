@@ -6,6 +6,8 @@ It don't really require recoil, could be done with useState, just to get in touc
 
 It uses editable div to be customizable for include images in text message and possible styles like bold or link text.
 
+`editabletext.html` is an example of how to use an editable div to generate a text editor with pure html.
+
 # Emotion setup
 
 1. Install emotion
