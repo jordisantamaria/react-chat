@@ -1,26 +1,26 @@
 import {css} from "@emotion/react";
+import { ChatMessage } from "../store/messagesState";
 
-const messagesArray = [
-    1,2,3,4,5,6,7,8,9,10,11,12,13,14
-]
-export const Messages = () => {
-
+interface Props {
+  messages: ChatMessage[]
+}
+export const Messages = (props: Props) => {
     return (
-    <div css={messagesCss}>
-        {messagesArray.map((i) => (
-            <div css={messageBoxCss} key={i}>
-                <img css={avatarCss} src={'favicon.ico'}/>
-                <div css={responseCss}>
-                    <div css={messageTextCss}>
-                        This is a message
-                    </div>
-                    <span css={timestampCss}>
-                    10:06
-                </span>
-                </div>
-            </div>
-        ))}
-    </div>
+      <div css={messagesCss}>
+          {props.messages.map((msg, i) => (
+              <div css={messageBoxCss} key={i}>
+                  <img css={avatarCss} src={'favicon.ico'}/>
+                  <div css={responseCss}>
+                      <div css={messageTextCss}>
+                        {msg.content}
+                      </div>
+                      <span css={timestampCss}>
+                        {msg.date}
+                      </span>
+                  </div>
+              </div>
+          ))}
+      </div>
   )
 
 }

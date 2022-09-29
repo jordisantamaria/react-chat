@@ -1,16 +1,27 @@
 import { css } from "@emotion/react"
+import { useRecoilState, useRecoilValue } from "recoil"
+import { ChatMessage, getFormattedMessage, messagesState } from "../store/messagesState"
 import { Header } from "./Header"
 import { Messages } from "./Messages"
 import { Sender } from "./Sender"
 
 export const Chat = () => {
 
+  const [messages, sendMessages] = useRecoilState(messagesState)
+  const messagesFormated = useRecoilValue(getFormattedMessage)
+
+  console.log('messageFormated = ', messagesFormated)
+
+  const handleSendMessage = (msg: ChatMessage) => {
+    sendMessages([...messages, msg])
+  }
+
   return (
     <div css={chatCss}>
       <div css={containerCss}>
         <Header/>
-        <Messages/>
-        <Sender/>
+        <Messages messages={messages}/>
+        <Sender onSend={handleSendMessage}/>
       </div>
     </div>
   )

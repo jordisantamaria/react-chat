@@ -13,14 +13,3 @@ export const GlobalStyles = () => (
     }
   `} />
 )
-
-const globalStyles = css`
-  ${emotionReset}
-
-  *, *::after, *::before {
-    box-sizing: border-box;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    font-smoothing: antialiased;
-  }
-`
