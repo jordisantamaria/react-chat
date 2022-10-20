@@ -1,74 +1,83 @@
-import {css} from "@emotion/react";
-import {useRef} from "react";
-import { ChatMessage } from "../store/messagesState";
+import { css } from '@emotion/react'
+import { useRef, useState } from 'react'
+import { ChatMessage } from '../store/messagesState'
 
 interface Props {
-    onSend: (message: ChatMessage) => void
+  onSend: (message: ChatMessage) => void
 }
 
 export const Sender = (props: Props) => {
-
-    const editableTextRef: any = useRef(null)
-
-    function moveCaret(win: any, charCount: number) {
-        var sel, range;
-        if (win.getSelection) {
-            sel = win.getSelection();
-            if (sel.rangeCount > 0) {
-                var textNode = sel.focusNode;
-                var newOffset = sel.focusOffset + charCount;
-                sel.collapse(textNode, Math.min(textNode.length, newOffset));
-            }
-        } else if ( (sel = win.document.selection) ) {
-            if (sel.type != "Control") {
-                range = sel.createRange();
-                range.move("character", charCount);
-                range.select();
-            }
-        }
+  const [isMention, setIsMention] = useState(false)
+  const handleClickTextarea = () => {
+    if (isMention) {
+      setIsMention(false)
     }
+  }
 
-    const handleAddEmoji = (e: any) => {
-        e.preventDefault()
-        console.log('selection = ', editableTextRef)
-        console.log('add emoji ', editableTextRef)
-        // document.execCommand('insertImage', true, '/send-2.svg')
-        const img = document.createElement('img');
-        img.src = '/send-2.svg'
-        img.alt = ':send:'
-        editableTextRef.current.appendChild(img)
+  const editableTextRef: any = useRef(null)
 
-        const sel = window.getSelection()
-        console.log('selection = ', sel)
-        console.log('selection rangeCount = ', sel!.getRangeAt(0))
-        editableTextRef.current.focus()
-        moveCaret(window, 10)
-
+  function moveCaret(win: any, charCount: number) {
+    var sel, range
+    if (win.getSelection) {
+      sel = win.getSelection()
+      if (sel.rangeCount > 0) {
+        var textNode = sel.focusNode
+        var newOffset = sel.focusOffset + charCount
+        sel.collapse(textNode, Math.min(textNode.length, newOffset))
+      }
+    } else if ((sel = win.document.selection)) {
+      if (sel.type != 'Control') {
+        range = sel.createRange()
+        range.move('character', charCount)
+        range.select()
+      }
     }
-    const handleSend = () => {
-        console.log(editableTextRef.current.innerText)
-        props.onSend({content: editableTextRef.current.innerText, date: new Date().toISOString()})
-        editableTextRef.current.innerText = ""
-    }
+  }
+
+  const handleAddEmoji = (e: any) => {
+    e.preventDefault()
+    console.log('selection = ', editableTextRef)
+    console.log('add emoji ', editableTextRef)
+    // document.execCommand('insertImage', true, '/send-2.svg')
+    const img = document.createElement('img')
+    img.src = '/send-2.svg'
+    img.alt = ':send:'
+    editableTextRef.current.appendChild(img)
+
+    const sel = window.getSelection()
+    console.log('selection = ', sel)
+    console.log('selection rangeCount = ', sel!.getRangeAt(0))
+    editableTextRef.current.focus()
+    moveCaret(window, 10)
+  }
+  const handleSend = () => {
+    console.log(editableTextRef.current.innerText)
+    props.onSend({
+      content: editableTextRef.current.innerText,
+      date: new Date().toISOString(),
+    })
+    editableTextRef.current.innerText = ''
+  }
   return (
     <div css={senderCss}>
-        <button onClick={handleAddEmoji} css={addReactionCss}>😃</button>
-        <div css={newMessageCss}>
-            <div
-                ref={editableTextRef}
-                css={editableTextCss}
-                spellCheck
-                role={"textbox"}
-                contentEditable
-                placeholder={'Type a message...'}
-            />
-        </div>
-        <button css={sendButtonCss} onClick={handleSend}>
-            <img src={'/send-2.svg'} css={sendIconCss} />
-        </button>
+      <button onClick={handleAddEmoji} css={addReactionCss}>
+        😃
+      </button>
+      <div css={newMessageCss}>
+        <div
+          ref={editableTextRef}
+          css={editableTextCss}
+          spellCheck
+          role={'textbox'}
+          contentEditable
+          placeholder={'Type a message...'}
+        />
+      </div>
+      <button css={sendButtonCss} onClick={handleSend}>
+        <img src={'/send-2.svg'} css={sendIconCss} />
+      </button>
     </div>
   )
-
 }
 
 const senderCss = css`
@@ -88,7 +97,7 @@ const addReactionCss = css`
   border: 0;
   cursor: pointer;
   font-size: 24px;
-    `
+`
 const newMessageCss = css`
   background-color: #fff;
   border: 0;
@@ -107,7 +116,7 @@ const editableTextCss = css`
   user-select: text;
   white-space: pre-wrap;
   word-wrap: break-word;
-  
+
   &[contenteditable] {
     outline: 0px solid transparent;
   }

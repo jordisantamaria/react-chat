@@ -1,13 +1,7 @@
-import {css} from "@emotion/react";
+import { css } from '@emotion/react'
 
 export const Header = () => {
-
-  return (
-    <div css={headerCss}>
-      header
-    </div>
-  )
-
+  return <div css={headerCss}>header</div>
 }
 
 const headerCss = css`
