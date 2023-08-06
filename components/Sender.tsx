@@ -22,7 +22,7 @@ export const Sender = (props: Props) => {
   const handleSend = () => {
     console.log(editableTextRef.current.innerText)
     props.onSend({
-      content: editableTextRef.current.innerText,
+      content: editableTextRef.current.innerHTML,
       date: new Date().toISOString(),
     })
     editableTextRef.current.innerText = ''

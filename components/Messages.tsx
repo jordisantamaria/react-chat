@@ -11,7 +11,7 @@ export const Messages = (props: Props) => {
         <div css={messageBoxCss} key={i}>
           <img css={avatarCss} src={'favicon.ico'} />
           <div css={responseCss}>
-            <div css={messageTextCss}>{msg.content}</div>
+            <div dangerouslySetInnerHTML={{ __html: msg.content }} />
             <span css={timestampCss}>{msg.date}</span>
           </div>
         </div>
