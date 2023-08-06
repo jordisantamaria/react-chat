@@ -5,7 +5,7 @@
 
 A simple chat UI written with emotion, nextjs and recoil for practice purpose.
 
-It uses editable div to be customizable for include images in text message and possible styles like bold or link text.
+It uses editable div to allow include images in text message and possible styles like bold or link text.
 
 `editabletext.html` is an example of how to use an editable div to generate a text editor with pure html.
 
