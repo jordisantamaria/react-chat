@@ -1,5 +1,5 @@
 import { css } from '@emotion/react'
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { ChatMessage } from '../store/messagesState'
 
 interface Props {
@@ -7,48 +7,17 @@ interface Props {
 }
 
 export const Sender = (props: Props) => {
-  const [isMention, setIsMention] = useState(false)
-  const handleClickTextarea = () => {
-    if (isMention) {
-      setIsMention(false)
-    }
-  }
 
   const editableTextRef: any = useRef(null)
 
-  function moveCaret(win: any, charCount: number) {
-    var sel, range
-    if (win.getSelection) {
-      sel = win.getSelection()
-      if (sel.rangeCount > 0) {
-        var textNode = sel.focusNode
-        var newOffset = sel.focusOffset + charCount
-        sel.collapse(textNode, Math.min(textNode.length, newOffset))
-      }
-    } else if ((sel = win.document.selection)) {
-      if (sel.type != 'Control') {
-        range = sel.createRange()
-        range.move('character', charCount)
-        range.select()
-      }
-    }
-  }
 
   const handleAddEmoji = (e: any) => {
     e.preventDefault()
-    console.log('selection = ', editableTextRef)
-    console.log('add emoji ', editableTextRef)
     // document.execCommand('insertImage', true, '/send-2.svg')
     const img = document.createElement('img')
     img.src = '/send-2.svg'
     img.alt = ':send:'
     editableTextRef.current.appendChild(img)
-
-    const sel = window.getSelection()
-    console.log('selection = ', sel)
-    console.log('selection rangeCount = ', sel!.getRangeAt(0))
-    editableTextRef.current.focus()
-    moveCaret(window, 10)
   }
   const handleSend = () => {
     console.log(editableTextRef.current.innerText)

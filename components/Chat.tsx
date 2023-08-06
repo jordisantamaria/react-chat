@@ -49,6 +49,5 @@ const containerCss = css`
   border-radius: 10px;
   box-shadow: 0 2px 10px 1px #b5b5b5;
   min-width: 370px;
-  max-width: 90vw;
   position: relative;
 `
