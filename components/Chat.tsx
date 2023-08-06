@@ -1,8 +1,7 @@
 import { css } from '@emotion/react'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useRecoilState } from 'recoil'
 import {
   ChatMessage,
-  getFormattedMessage,
   messagesState,
 } from '../store/messagesState'
 import { Header } from './Header'
@@ -11,9 +10,6 @@ import { Sender } from './Sender'
 
 export const Chat = () => {
   const [messages, sendMessages] = useRecoilState(messagesState)
-  const messagesFormated = useRecoilValue(getFormattedMessage)
-
-  console.log('messageFormated = ', messagesFormated)
 
   const handleSendMessage = (msg: ChatMessage) => {
     sendMessages([...messages, msg])
