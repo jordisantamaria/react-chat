@@ -9,7 +9,7 @@ It uses editable div to allow include images in text message and possible styles
 
 `editabletext.html` is an example of how to use an editable div to generate a text editor with pure html.
 
-### ✨ [Demo]()
+### ✨ [Demo](https://react-chat-lake.vercel.app/)
 
 
 ## Install
