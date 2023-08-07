@@ -36,7 +36,7 @@ Deploy this project on Vercel in one click:
 
 - Twitter: [@JordiSantamar1a](https://twitter.com/JordiSantamar1a)
 - Github: [@jordisantamaria](https://github.com/jordisantamaria)
-- LinkedIn: [@jordi-santamaria-portoles-8b14818b](https:/www.linkedin.com/in/jordi-santamaria-portoles-8b14818b/)
+* LinkedIn: [@jordi-santamaria-portoles-8b14818b](https://www.linkedin.com/in/jordi-santamaria-portoles-8b14818b/)
 
 ## Show your support
 
